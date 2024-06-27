@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.yueduMapper">
+    <update id="update">
+        update yuedu
+        <set>
+            <if test="zhongwen !=null and zhongwen !=''">
+                zhongwen = #{zhongwen},
+            </if>
+            <if test="riwen !=null and riwen !=''">
+                riwen = #{riwen},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+    <!--<delete id="delect">
+        delete
+        from shoucangjia
+        where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}/*拼接每次生成的变量id*/
+        </foreach>
+    </delete>-->
+</mapper>

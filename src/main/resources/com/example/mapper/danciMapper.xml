@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.danciMapper">
+    <!--更新单词-->
+    <update id="update">
+        update danci
+        <set>
+            <if test="zhongwen !=null and zhongwen !=''">
+                zhongwen = #{zhongwen},
+            </if>
+            <if test="riwen !=null and riwen !=''">
+                riwen = #{riwen},
+            </if>
+            <if test="liju !=null and liju !=''">
+                liju = #{liju},
+            </if>
+            <if test="lijujieshi !=null and lijujieshi !=''">
+                lijujieshi = #{lijujieshi}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--批量（单个）删除,'item'为遍历出来的变量名,separator为分隔符，即遍历出来之后什么分割
+    open为遍历之前拼接什么，close遍历之后拼接什么-->
+    <!--<delete id="delect">
+        delete
+        from danci
+        where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}/*拼接每次生成的变量id*/
+        </foreach>
+    </delete>-->
+
+    <!--条件查询-->
+    <select id="list" resultType="com.example.pojo.danci" parameterType="java.lang.String">
+        select *
+        from danci
+        <where>
+            <if test="zhongwen != null and zhongwen!= '' ">
+                or zhongwen like concat('%',#{zhongwen},'%')
+            </if>
+            <if test="riwen != null and riwen!= '' ">
+                or riwen like concat('%',#{riwen},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

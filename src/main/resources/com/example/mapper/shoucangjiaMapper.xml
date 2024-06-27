@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.shoucangjiaMapper">
+    <update id="update">
+        update shoucangjia
+        <set>
+            <if test="shoucangjianame !=null and shoucangjianame !=''">
+                shoucangjianame = #{shoucangjianame},
+            </if>
+            <if test="danciming !=null and danciming !=''">
+                danciming = #{danciming},
+            </if>
+            <if test="zhongwenshiyi !=null and zhongwenshiyi !=''">
+                zhongwenshiyi = #{zhongwenshiyi},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+    <!--<delete id="delect">
+        delete
+        from shoucangjia
+        where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}/*拼接每次生成的变量id*/
+        </foreach>
+    </delete>-->
+</mapper>
